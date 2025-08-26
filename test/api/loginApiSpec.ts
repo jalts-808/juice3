@@ -135,11 +135,14 @@ describe('/rest/user/login', () => {
   })
 
   it('POST login as bjoern.kimminich@gmail.com with known password', () => {
+    // SECURITY FIX: Use environment variable instead of hardcoded password
+    const testPassword = process.env.BJOERN_TEST_PASSWORD || 'defaultTestPassword123!'
+    
     return frisby.post(REST_URL + '/user/login', {
       headers: jsonHeader,
       body: {
         email: 'bjoern.kimminich@gmail.com',
-        password: 'bW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI='
+        password: testPassword
       }
     })
       .expect('status', 200)
