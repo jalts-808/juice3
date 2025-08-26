@@ -69,7 +69,6 @@ jobs:
 
   deploy:
     needs: build
-    environment: Demo Environment
     steps:
       - name: Simulate deployment
         uses: docker://alpine:latest
