@@ -105,7 +105,7 @@ describe('/chatbot', () => {
       }
       const { token } = await login({
         email: 'bjoern.kimminich@gmail.com',
-        password: 'bW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI='
+        password: process.env.TEST_USER_PASSWORD || 'testpassword'
       })
 
       bot.addUser('1337', 'bkimminich')
@@ -137,7 +137,7 @@ describe('/chatbot', () => {
       }
       const { token } = await login({
         email: 'bjoern.kimminich@gmail.com',
-        password: 'bW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI='
+        password: process.env.TEST_USER_PASSWORD || 'testpassword'
       })
       bot.addUser('12345', 'bkimminich')
       const testCommand = trainingData.data[0].utterances[0]
@@ -171,7 +171,7 @@ describe('/chatbot', () => {
     it('Responds with product price when asked question with product name', async () => {
       const { token } = await login({
         email: 'bjoern.kimminich@gmail.com',
-        password: 'bW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI='
+        password: process.env.TEST_USER_PASSWORD || 'testpassword'
       })
       const { json } = await frisby.get(API_URL + '/Products/1')
         .expect('status', 200)
@@ -247,7 +247,7 @@ describe('/chatbot', () => {
       const functionTest = trainingData.data.filter(data => data.intent === 'queries.functionTest')
       const { token } = await login({
         email: 'bjoern.kimminich@gmail.com',
-        password: 'bW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI='
+        password: process.env.TEST_USER_PASSWORD || 'testpassword'
       })
       const testCommand = functionTest[0].utterances[0]
       const testResponse = '3be2e438b7f3d04c89d7749f727bb3bd'
